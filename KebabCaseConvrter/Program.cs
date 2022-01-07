@@ -7,19 +7,31 @@ namespace KebabCaseConvrter
         static void Main(string[] args)
         {
             Console.WriteLine("Enter your text: ");
-            string regularText = Console.ReadLine();
+            var regularText = Console.ReadLine();
 
-            string[] words = regularText.Split(new char[] { ',', ' ', '.', ';', '-' }, StringSplitOptions.RemoveEmptyEntries);
-            var StringBuilder = new StringBuilder();
-
-            for (int i = 0; i < words.Length; i++)
+            while (true)
             {
-                regularText = words[i];
-                StringBuilder.Append(words[i]).Append("-");
+                if (string.IsNullOrEmpty(regularText))
+                {
+                    Console.WriteLine("Enter your text: ");
+                    regularText = Console.ReadLine();
+                    continue;
+                }
+                break;
+            }
+           
+            char[] delimiters = new char[] { ',', ' ', '.', ';', '-', ':' };
+            string[] words = regularText.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            var stringBuilder = new StringBuilder();
+
+            foreach (string i in words)
+            {
+                regularText = i;
+                stringBuilder.Append(i).Append("-");
                 continue;
             }
 
-            string hyphenatedText = StringBuilder.ToString();
+            string hyphenatedText = stringBuilder.ToString();
             int lastHyphen = hyphenatedText.Length - 1;
             string kebabCase = hyphenatedText.Remove(lastHyphen);
 
