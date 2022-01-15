@@ -26,7 +26,6 @@ namespace KebabCaseConvrter
 
             foreach (string i in words)
             {
-                regularText = i;
                 stringBuilder.Append(i).Append("-");
                 continue;
             }
