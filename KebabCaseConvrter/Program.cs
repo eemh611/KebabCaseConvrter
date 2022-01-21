@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+
 namespace KebabCaseConvrter
 {
     class Program
@@ -7,19 +8,8 @@ namespace KebabCaseConvrter
         static void Main(string[] args)
         {
             Console.WriteLine("Enter your text: ");
-            var regularText = Console.ReadLine();
+            var regularText = GetRegularText();
 
-            while (true)
-            {
-                if (string.IsNullOrEmpty(regularText))
-                {
-                    Console.WriteLine("Enter your text: ");
-                    regularText = Console.ReadLine();
-                    continue;
-                }
-                break;
-            }
-           
             char[] delimiters = new char[] { ',', ' ', '.', ';', '-', ':' };
             string[] words = regularText.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
             var stringBuilder = new StringBuilder();
@@ -35,6 +25,28 @@ namespace KebabCaseConvrter
             string kebabCase = hyphenatedText.Remove(lastHyphen);
 
             Console.WriteLine(kebabCase.ToLower());
+        }
+
+        private static void OutputErrorMassageAndRequestTheValue(string errorMassage)
+        {
+            Console.WriteLine("Enter your text: ");
+        }
+
+        private static string GetRegularText()
+        {
+            var regularText = Console.ReadLine();
+
+            while (true)
+            {
+                if (string.IsNullOrEmpty(regularText))
+                {
+                    Console.WriteLine("Enter your text: ");
+                    regularText = Console.ReadLine();
+                    continue;
+                }
+                break;
+            }
+            return regularText;
         }
     }
 }
