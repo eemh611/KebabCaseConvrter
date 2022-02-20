@@ -27,20 +27,23 @@ namespace KebabCaseConvrter
             Console.WriteLine(kebabCase.ToLower());
         }
 
-        private static void OutputErrorMassageAndRequestTheValue(string errorMassage)
+        private static void OutputErrorMassageAndRequestTheValue(string errorMassageEmptyLine, string requestAText)
         {
-            Console.WriteLine("Enter your text: ");
+            Console.WriteLine(errorMassageEmptyLine);
+            Console.WriteLine(requestAText);
         }
 
         private static string GetRegularText()
         {
+            const string errorMassageEmptyLine1 = "Error, this field is empty";
+            const string requestAText1= "Enter your text: ";
             var regularText = Console.ReadLine();
 
             while (true)
             {
                 if (string.IsNullOrEmpty(regularText))
                 {
-                    Console.WriteLine("Enter your text: ");
+                    OutputErrorMassageAndRequestTheValue(errorMassageEmptyLine1, requestAText1);
                     regularText = Console.ReadLine();
                     continue;
                 }
